@@ -1,6 +1,7 @@
 package com.clem.androidarch
 
 import androidx.multidex.MultiDexApplication
+import com.clem.androidarch.di.applicationModules
 import com.clem.arch_core.AndroidArchCoreApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
@@ -17,7 +18,7 @@ class AndroidArchApplication : AndroidArchCoreApplication() {
             androidContext(this@AndroidArchApplication)
             androidFileProperties()
             fragmentFactory()
-//            modules(applicationModules)
+            modules(applicationModules)
         }
     }
 
