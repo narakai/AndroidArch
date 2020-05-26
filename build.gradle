@@ -38,7 +38,7 @@ task clean(type: Delete) {
 }
 
 ext {
-    minSdkVersion = 16
+    minSdkVersion = 21
     targetSdkVersion = 29
     compileSdkVersion = 29
     versionCode = 1
@@ -61,4 +61,5 @@ ext {
     koinVersion = '2.1.5'
     junitVersion = '4.12'
     testRunnerVersion = '1.2.1'
+    brvahVersion = '3.0.4'
 }
