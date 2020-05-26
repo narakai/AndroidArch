@@ -1,0 +1,3 @@
+rootProject.name='AndroidArch'
+include ':app'
+include ':arch_core'
