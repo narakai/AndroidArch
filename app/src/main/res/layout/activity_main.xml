@@ -47,6 +47,7 @@
             android:id="@+id/main_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="@{viewModel.isShowRepositoryView() ? View.VISIBLE : View.GONE}"
              />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
