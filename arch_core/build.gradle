@@ -58,6 +58,7 @@ dependencies {
     api "com.squareup.retrofit2:retrofit:$retrofitVersion"
     api "com.squareup.retrofit2:converter-gson:$retrofitConverterGsonVersion"
     api "com.squareup.retrofit2:converter-scalars:$retrofitConverterScalarsVersion"
+    api "com.squareup.okhttp3:logging-interceptor:$loggingVerison"
     api "com.github.bumptech.glide:glide:$glideVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
     api "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion"

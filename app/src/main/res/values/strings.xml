@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidArch</string>
+    <string name="retry">Retry</string>
+    <string name="error_hint">Error! Please try again.</string>
 </resources>

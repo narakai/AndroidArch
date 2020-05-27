@@ -7,4 +7,4 @@ const val MMKV_CRYPT_KEY = "android_generic_framework_configuration_crypt_key"
 // Retrofit
 const val CONNECT_TIMEOUT = 20000L
 const val READ_TIMEOUT = 20000L
-const val HOST = "https://www.wanandroid.com"
+const val HOST = "https://www.wanandroid.com/"

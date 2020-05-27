@@ -62,4 +62,5 @@ ext {
     junitVersion = '4.12'
     testRunnerVersion = '1.2.1'
     brvahVersion = '3.0.4'
+    loggingVerison = '3.10.0'
 }
