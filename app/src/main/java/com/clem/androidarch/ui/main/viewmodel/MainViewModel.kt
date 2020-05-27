@@ -21,7 +21,7 @@ class MainViewModel(
 
     fun getArticle(page: String) =
         launch(
-            uiState = UIState(isShowLoadingView = true, isShowErrorView = true),
+            uiState = UIState(isShowLoadingView = true, isShowErrorView = true, isShowErrorToast = true),
             block = {
                 dataRepository.getDataRepository(page)
             },

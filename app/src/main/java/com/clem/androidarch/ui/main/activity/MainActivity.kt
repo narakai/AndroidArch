@@ -27,6 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), BaseVie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        registerToastEvent()
         initUI()
         initData()
     }
@@ -39,6 +40,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), BaseVie
             main_rv.layoutManager = LinearLayoutManager(this@MainActivity)
 //            main_rv.adapter = this@MainActivity.adapter
 
+            //error 需要重新inflate, loading已经include进去
             vsError.setOnInflateListener { _, inflated ->
                 DataBindingUtil.bind<LayoutErrorBinding>(inflated)?.run {
                     lifecycleOwner = this@MainActivity
