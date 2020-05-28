@@ -12,8 +12,8 @@ class MainAdapter(layoutResId: Int, data: MutableList<DataBean>?) :
         // 获取 Binding
         val binding: ItemArticleBinding? = holder.dataBinding
         if (binding != null) {
-            binding.tvDescription.text = item.author
-            binding.tvName.text = item.title
+            binding.data = item
+            binding.executePendingBindings()
         }
     }
 
