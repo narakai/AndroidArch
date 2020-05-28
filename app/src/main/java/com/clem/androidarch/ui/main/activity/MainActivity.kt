@@ -6,9 +6,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.clem.androidarch.R
+import com.clem.androidarch.data.model.DataBean
 import com.clem.androidarch.databinding.ActivityMainBinding
 import com.clem.androidarch.databinding.LayoutErrorBinding
-import com.clem.androidarch.ui.main.MainAdapter
+import com.clem.androidarch.ui.main.adapter.MainAdapter
 import com.clem.androidarch.ui.main.viewmodel.MainViewModel
 import com.clem.arch_core.ui.BaseActivity
 import com.clem.arch_core.ui.BaseViewModel
@@ -22,12 +23,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), BaseVie
     override val layoutRes: Int = R.layout.activity_main
     override val viewModel by lifecycleScope.viewModel<MainViewModel>(this)
 
-    private val adapter by lazy { MainAdapter() }
+    private lateinit var adapter: MainAdapter
     private var errorView: View? = null
+    private var itemList: MutableList<DataBean> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        registerToastEvent()
+//        registerToastEvent()
         initUI()
         initData()
     }
@@ -38,7 +40,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), BaseVie
             viewModel = this@MainActivity.viewModel
 
             main_rv.layoutManager = LinearLayoutManager(this@MainActivity)
-//            main_rv.adapter = this@MainActivity.adapter
+            adapter = MainAdapter(R.layout.item_article, itemList)
+            main_rv.adapter = this@MainActivity.adapter
 
             //error 需要重新inflate, loading已经include进去
             vsError.setOnInflateListener { _, inflated ->
@@ -49,24 +52,29 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), BaseVie
                 }
             }
 
-            this@MainActivity.viewModel.isShowErrorView.observe(this@MainActivity, Observer { isShowErrorView ->
-                if (isShowErrorView) {
-                    if (!vsError.isInflated) {
-                        vsError.viewStub?.inflate()?.also { errorView = it }
+            this@MainActivity.viewModel.isShowErrorView.observe(
+                this@MainActivity,
+                Observer { isShowErrorView ->
+                    if (isShowErrorView) {
+                        if (!vsError.isInflated) {
+                            vsError.viewStub?.inflate()?.also { errorView = it }
+                        } else {
+                            errorView?.visibility = View.VISIBLE
+                        }
                     } else {
-                        errorView?.visibility = View.VISIBLE
+                        errorView?.visibility = View.GONE
                     }
-                } else {
-                    errorView?.visibility = View.GONE
-                }
-            })
+                })
         }
 
     private fun initData() =
         with(viewModel) {
             getArticle("0")
             articleData.observe(this@MainActivity, Observer {
-                toastShort(it.data.datas.size.toString())
+//                toastShort(it.data.datas.size.toString())
+                itemList.clear()
+                itemList.addAll(it.data.datas as MutableList<DataBean>)
+                adapter.notifyDataSetChanged()
             })
         }
 
