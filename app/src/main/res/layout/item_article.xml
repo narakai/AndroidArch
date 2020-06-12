@@ -38,7 +38,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
-            android:text="@{data.desc}"
+            android:text="@{data.link}"
             android:textColor="@color/text_dark_grey"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"

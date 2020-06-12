@@ -13,7 +13,7 @@ class MainAdapter(layoutResId: Int, data: MutableList<DataBean>?) :
         val binding: ItemArticleBinding? = holder.dataBinding
         if (binding != null) {
             binding.data = item
-            binding.executePendingBindings()
+//            binding.executePendingBindings()
         }
     }
 
