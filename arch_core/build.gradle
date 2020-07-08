@@ -53,6 +53,8 @@ dependencies {
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesCoreVersion"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutinesAndroidVersion"
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewmodelKtxVersion"
+    api "androidx.lifecycle:lifecycle-process:$lifecycleViewmodelKtxVersion"
+    api "androidx.lifecycle:lifecycle-common-java8:$lifecycleViewmodelKtxVersion"
     api "androidx.appcompat:appcompat:$appcompatVersion"
     api "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
     api "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -71,6 +73,7 @@ dependencies {
     api "org.koin:koin-androidx-fragment:$koinVersion"
     api "org.koin:koin-androidx-ext:$koinVersion"
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$brvahVersion"
+    api "com.kingja.loadsir:loadsir:$loadsirVersion"
 
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation 'androidx.test:runner:1.2.0'
