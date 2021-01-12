@@ -49,6 +49,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "com.github.LillteZheng.FlowHelper:tablibx:$flowHelperVersion"
+//    implementation "com.github.LillteZheng.FlowHelper:tablibx:$flowHelperVersion"
     implementation project(path: ':arch_core')
+    implementation project(path: ':tablibx')
 }
