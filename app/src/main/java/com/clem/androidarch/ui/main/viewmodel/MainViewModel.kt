@@ -34,6 +34,9 @@ class MainViewModel(
         )
 
     interface Handlers {
-        fun onTextClick(view: View)
+        @JvmDefault
+        fun onTvClick(view: View) {
+            // no implementation
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.clem.androidarch.ui.main.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -13,12 +14,14 @@ import com.clem.androidarch.ui.main.adapter.MainAdapter
 import com.clem.androidarch.ui.main.viewmodel.MainViewModel
 import com.clem.arch_core.ui.BaseActivity
 import com.clem.arch_core.ui.BaseViewModel
+import com.clem.arch_core.utils.startActivity
 import com.clem.arch_core.utils.toastShort
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
+private const val TAG = "MainActivity"
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), BaseViewModel.Handlers {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), BaseViewModel.Handlers, MainViewModel.Handlers {
 
     override val layoutRes: Int = R.layout.activity_main
     override val viewModel by lifecycleScope.viewModel<MainViewModel>(this)
@@ -38,6 +41,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), BaseVie
         with(binding) {
             lifecycleOwner = this@MainActivity
             viewModel = this@MainActivity.viewModel
+            handlers = this@MainActivity
 
             main_rv.layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = MainAdapter(R.layout.item_article, itemList)
@@ -80,5 +84,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), BaseVie
 
     override fun onRetryClick(view: View) {
         viewModel.getArticle("0")
+    }
+
+    override fun onTvClick(view: View) {
+        Log.d(TAG, "onTvClick: ")
+        startActivity<GetFoodActivity>()
     }
 }
