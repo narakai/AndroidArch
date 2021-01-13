@@ -48,8 +48,8 @@ public class RoundAction extends BaseAction {
             mTabRect.top = value.top ;
             mTabRect.bottom = value.bottom ;
         }
-        mTabRect.left = value.left ;
-        mTabRect.right = value.right ;
+        mTabRect.left = value.left + 10f;
+        mTabRect.right = value.right - 10f;
 
     }
 

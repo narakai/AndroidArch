@@ -333,86 +333,86 @@ public abstract class BaseAction  extends BViewPager {
      * @param curIndex
      */
     public void doAnim(int lastIndex, final int curIndex,int animTime) {
-        if (mCurrentIndex == mLastIndex){
-            return;
-        }
-        if (mAnimator != null) {
-            mAnimator.cancel();
-            mAnimator = null;
-        }
-        if (mParentView != null) {
-            final View curView = mParentView.getChildAt(curIndex);
-            final View lastView = mParentView.getChildAt(lastIndex);
-            if (curView != null && lastView != null) {
-                TabValue lastValue = getValue(lastView);
-                TabValue curValue = getValue(curView);
-                if (isVertical()){
-                    if (mTabBean.tabHeight != -1){
-                        lastValue.top = mTabRect.top;
-                        lastValue.bottom = mTabRect.bottom;
-                        int height = curView.getMeasuredHeight();
-                        //竖直方向不去理会
-                        curValue.top = (height - mTabBean.tabHeight) / 2 + curView.getTop();
-                        curValue.bottom = mTabBean.tabHeight + curValue.top;
-                    }
-                }else {
-                    if (mTabBean.tabWidth != -1) {
-                        lastValue.left = mTabRect.left;
-                        lastValue.right = mTabRect.right;
-                        int width = curView.getMeasuredWidth();
-                        if (mTabBean.tabType == FlowConstants.RECT) {
-                            curValue.left = (1 - mOffset) * width / 2 + curView.getLeft();
-                            curValue.right = width * mOffset + curValue.left;
-                        } else {
-                            curValue.left = (width - mTabBean.tabWidth) / 2 + curView.getLeft();
-                            curValue.right = mTabBean.tabWidth + curValue.left;
-                        }
-                    }
-                }
-
-
-
-                mAnimator = ObjectAnimator.ofObject(new TabTypeEvaluator(), lastValue, curValue);
-                mAnimator.setDuration(animTime);
-                mAnimator.setInterpolator(new LinearInterpolator());
-                mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        TabValue value = (TabValue) animation.getAnimatedValue();
-                        valueChange(value);
-                        mParentView.postInvalidate();
-                    }
-                });
-                mAnimator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        if (mParentView != null && mViewPager == null) {
-                            TabFlowAdapter adapter = mParentView.getAdapter();
-                            if (adapter != null) {
-                                int count = adapter.getItemCount();
-                                for (int i = 0; i < count; i++) {
-                                    View child = mParentView.getChildAt(i);
-                                    if (i == mCurrentIndex){
-                                        adapter.onItemSelectState(child, true);
-                                    }else{
-                                        adapter.onItemSelectState(child, false);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-                mAnimator.start();
-            }else{
-                if (mAnimator != null) {
-                    mAnimator.end();
-                    mAnimator = null;
-                }
-
-            }
-
-        }
+//        if (mCurrentIndex == mLastIndex){
+//            return;
+//        }
+//        if (mAnimator != null) {
+//            mAnimator.cancel();
+//            mAnimator = null;
+//        }
+//        if (mParentView != null) {
+//            final View curView = mParentView.getChildAt(curIndex);
+//            final View lastView = mParentView.getChildAt(lastIndex);
+//            if (curView != null && lastView != null) {
+//                TabValue lastValue = getValue(lastView);
+//                TabValue curValue = getValue(curView);
+//                if (isVertical()){
+//                    if (mTabBean.tabHeight != -1){
+//                        lastValue.top = mTabRect.top;
+//                        lastValue.bottom = mTabRect.bottom;
+//                        int height = curView.getMeasuredHeight();
+//                        //竖直方向不去理会
+//                        curValue.top = (height - mTabBean.tabHeight) / 2 + curView.getTop();
+//                        curValue.bottom = mTabBean.tabHeight + curValue.top;
+//                    }
+//                }else {
+//                    if (mTabBean.tabWidth != -1) {
+//                        lastValue.left = mTabRect.left;
+//                        lastValue.right = mTabRect.right;
+//                        int width = curView.getMeasuredWidth();
+//                        if (mTabBean.tabType == FlowConstants.RECT) {
+//                            curValue.left = (1 - mOffset) * width / 2 + curView.getLeft();
+//                            curValue.right = width * mOffset + curValue.left;
+//                        } else {
+//                            curValue.left = (width - mTabBean.tabWidth) / 2 + curView.getLeft();
+//                            curValue.right = mTabBean.tabWidth + curValue.left;
+//                        }
+//                    }
+//                }
+//
+//
+//
+//                mAnimator = ObjectAnimator.ofObject(new TabTypeEvaluator(), lastValue, curValue);
+//                mAnimator.setDuration(animTime);
+//                mAnimator.setInterpolator(new LinearInterpolator());
+//                mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                    @Override
+//                    public void onAnimationUpdate(ValueAnimator animation) {
+//                        TabValue value = (TabValue) animation.getAnimatedValue();
+//                        valueChange(value);
+//                        mParentView.postInvalidate();
+//                    }
+//                });
+//                mAnimator.addListener(new AnimatorListenerAdapter() {
+//                    @Override
+//                    public void onAnimationEnd(Animator animation) {
+//                        super.onAnimationEnd(animation);
+//                        if (mParentView != null && mViewPager == null) {
+//                            TabFlowAdapter adapter = mParentView.getAdapter();
+//                            if (adapter != null) {
+//                                int count = adapter.getItemCount();
+//                                for (int i = 0; i < count; i++) {
+//                                    View child = mParentView.getChildAt(i);
+//                                    if (i == mCurrentIndex){
+//                                        adapter.onItemSelectState(child, true);
+//                                    }else{
+//                                        adapter.onItemSelectState(child, false);
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                });
+//                mAnimator.start();
+//            }else{
+//                if (mAnimator != null) {
+//                    mAnimator.end();
+//                    mAnimator = null;
+//                }
+//
+//            }
+//
+//        }
 
 
     }
